@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "337c71d1-ff10-4da0-b4c5-4244d7f98934",
+      subdomainName: 'test-farhan-1',
+      autoRegister: true, /* Set to true to automatically prompt visitors */
+      httpPermissionRequest: {
+        enable: true,
+      },
+      notifyButton: {
+        enable: true, /* Set to false to hide */
+      },
+      notificationClickHandlerMatch: 'origin',
+      notificationClickHandlerAction: 'focus',
+    }]);
+
+    function notifListen() {
+      OneSignal.push(['addListenerForNotificationOpened', notificationData => {
+        console.log('Received NotificationOpened:', notificationData);
+        notifListen();
+      }]);
+    }
+
+    notifListen();
+  </script>
+</head>
+<body>
+  <p>Web notification trial</p>
+</body>
+</html>
